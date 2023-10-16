@@ -1,5 +1,5 @@
 resource "aws_cloudwatch_metric_alarm" "MyScaleOutAlarm" {
-  alarm_name          = var.alarm_name
+  alarm_name          = "${var.alarm_name}-scale-out"
   alarm_description   = var.alarm_description
   comparison_operator = var.comparison_operator
   evaluation_periods = var.evaluation_periods
@@ -8,9 +8,10 @@ resource "aws_cloudwatch_metric_alarm" "MyScaleOutAlarm" {
   period             = var.period
   statistic          = var.statistic
   threshold          = var.threshold
-  alarm_action {
-    alarm_action_arn = var.policy_arn
+
+  dimensions = {
+    AutoScalingGroupName = aws_autoscaling_policy.MyScaleOutPolicy.name
   }
-  dimensions = var.dimensions
+  alarm_actions       = [ aws_autoscaling_policy.MyScaleOutPolicy.arn ]
   treat_missing_data = var.treat_missing_data
 }

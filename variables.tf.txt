@@ -1,8 +1,3 @@
-variable "target_arn" {
-  description = "The ARN of the AWS Application Auto Scaling target."
-  type        = string
-}
-
 variable "policy_arn" {
   description = "The ARN of the AWS Application Auto Scaling policy."
   type        = string

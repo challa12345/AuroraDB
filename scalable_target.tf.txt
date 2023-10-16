@@ -5,8 +5,3 @@ resource "aws_appautoscaling_target" "MyScalableTarget" {
   scalable_dimension = var.scalable_dimension
   service_namespace  = var.service_namespace
 }
-
-output "policy_arn" {
-  value = aws_appautoscaling_target.MyScalableTarget.policy_arn
-}
-
