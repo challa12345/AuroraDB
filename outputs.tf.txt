@@ -1,0 +1,11 @@
+output "target_arn" {
+  value = module.scalable_target.target_arn
+}
+
+output "scale_out_policy_arn" {
+  value = module.scale_out_policy.policy_arn
+}
+
+output "scale_in_policy_arn" {
+  value = module.scale_in_policy.policy_arn
+}

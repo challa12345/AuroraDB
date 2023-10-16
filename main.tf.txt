@@ -1,0 +1,27 @@
+provider "aws" {
+  region = "us-east-1" # Update with your desired AWS region
+}
+
+module "scalable_target" {
+  source = "./scalable_target.tf"
+}
+
+module "scale_out_policy" {
+  source = "./scale_out_policy.tf"
+  target_arn = module.scalable_target.target_arn
+}
+
+module "scale_in_policy" {
+  source = "./scale_in_policy.tf"
+  target_arn = module.scalable_target.target_arn
+}
+
+module "scale_out_alarm" {
+  source = "./scale_out_alarm.tf"
+  policy_arn = module.scale_out_policy.policy_arn
+}
+
+module "scale_in_alarm" {
+  source = "./scale_in_alarm.tf"
+  policy_arn = module.scale_in_policy.policy_arn
+}

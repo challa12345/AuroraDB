@@ -1,0 +1,12 @@
+resource "aws_appautoscaling_target" "MyScalableTarget" {
+  max_capacity       = var.max_capacity
+  min_capacity       = var.min_capacity
+  resource_id        = var.resource_id
+  scalable_dimension = var.scalable_dimension
+  service_namespace  = var.service_namespace
+}
+
+output "policy_arn" {
+  value = aws_appautoscaling_target.MyScalableTarget.policy_arn
+}
+

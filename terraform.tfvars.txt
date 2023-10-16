@@ -1,0 +1,28 @@
+target_arn = "your-target-arn-value"
+policy_arn = "your-policy-arn-value"
+max_capacity = 10
+min_capacity = 1
+resource_id = "YourEcsServiceResourceId"
+scalable_dimension = "ecs:service:DesiredCount"
+service_namespace = "ecs"
+adjustment_type = "ChangeInCapacity"
+cooldown = 300
+metric_aggregation_type = "Average"
+metric_name = "CPUUtilization"
+namespace = "AWS/ECS"
+period = 60
+statistic = "Average"
+threshold = 10
+
+dimensions = [
+  {
+    name = "ServiceName",
+    value = "your-app-name"
+  }
+]
+
+alarm_name = "your-scaleout-alarm-name"
+alarm_description = "Scale out when threshold is breached"
+comparison_operator = "GreaterThanOrEqualToThreshold"
+evaluation_periods = 1
+treat_missing_data = "notBreaching"
